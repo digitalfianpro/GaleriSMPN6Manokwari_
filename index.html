@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMP Negeri 6 Manokwari - Portal Edukasi & Galeri</title>
+  
+  <!-- --- PRELOAD & PRECONNECT (Menggunakan Proxy CDN agar lolos blokir internet) --- -->
+  <link rel="preload" href="https://wsrv.nl/?url=i.ibb.co/JWy6dhzM/LOGO-SMP6-1-removebg-preview.png" as="image" fetchpriority="high">
+  <link rel="preload" href="https://wsrv.nl/?url=i.ibb.co/6c69f3Qm/IMG-20251120-WA0118-1-1.jpg" as="image" fetchpriority="high">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://wsrv.nl">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Optimasi Animasi Menggunakan Akselerasi Perangkat Keras (GPU) */
+    @keyframes floatGlow {
+      0%, 100% { transform: translateY(0px) translateZ(0); filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5)); }
+      50% { transform: translateY(-10px) translateZ(0); filter: drop-shadow(0 0 35px rgba(52, 211, 153, 0.7)); }
+    }
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(20px) scale(0.97) translateZ(0); filter: blur(5px); }
+      to { opacity: 1; transform: translateY(0) scale(1) translateZ(0); filter: blur(0); }
+    }
+    @keyframes shimmer {
+      100% { transform: translateX(100%) translateZ(0); }
+    }
+    .splash-logo { animation: floatGlow 4s ease-in-out infinite, revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, filter; }
+    .splash-text-1 { opacity: 0; animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards; will-change: transform, opacity; }
+    .splash-text-2 { opacity: 0; animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; will-change: transform, opacity; }
+    .splash-btn { opacity: 0; animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; will-change: transform, opacity; }
+    .splash-exit { opacity: 0; transform: scale(1.03) translateZ(0); filter: blur(15px); transition: all 0.8s cubic-bezier(0.8, 0, 0.2, 1); pointer-events: none; }
+    .page-enter { animation: revealUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
+    
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
+    .dark .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.4); border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(16, 185, 129, 0.8); }
+  </style>
+</head>
+<body class="bg-emerald-50/40 dark:bg-[#081512] text-slate-900 dark:text-slate-100 transition-colors duration-500 min-h-screen flex flex-col relative overflow-x-hidden">
+
+  <!-- Lampu-Lampu Bercahaya (Diberi transform-gpu agar HP tidak lag) -->
+  <div id="ambient-lights" class="absolute inset-0 pointer-events-none z-0 overflow-hidden transform-gpu">
+    <div class="absolute top-10 left-10 w-[30rem] h-[30rem] bg-emerald-500/10 rounded-full blur-[130px] will-change-transform"></div>
+    <div class="absolute top-1/3 right-10 w-[25rem] h-[25rem] bg-teal-500/10 rounded-full blur-[110px] will-change-transform"></div>
+    <div class="absolute bottom-10 left-1/4 w-[35rem] h-[35rem] bg-emerald-600/10 rounded-full blur-[150px] will-change-transform"></div>
+  </div>
+
+  <!-- --- HALAMAN PERTAMA (Splash Screen Premium Zamrud) --- -->
+  <div id="splash-screen" class="fixed inset-0 z-[100] bg-[#071311] flex flex-col items-center justify-between overflow-hidden p-6 md:p-12 transform-gpu">
+    <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-900/25 via-transparent to-transparent pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-800/15 via-transparent to-transparent pointer-events-none"></div>
+    
+    <div class="hidden sm:block h-4"></div>
+    <div class="relative z-10 flex flex-col items-center text-center w-full max-w-md my-auto">
+      
+      <!-- LOGO DENGAN BACKGROUND PUTIH AGAR TAMPIL SEMPURNA -->
+      <div class="relative mb-6 p-5 md:p-8 bg-white rounded-full border-4 border-emerald-100 dark:border-emerald-900 splash-logo shadow-[0_0_40px_rgba(16,185,129,0.4)]">
+        <img src="https://wsrv.nl/?url=i.ibb.co/JWy6dhzM/LOGO-SMP6-1-removebg-preview.png" alt="Logo SMPN 6 Manokwari" fetchpriority="high" class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-md">
+        <div class="absolute inset-0 rounded-full bg-emerald-500/20 blur-2xl -z-10"></div>
+      </div>
+      
+      <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-emerald-400 to-teal-200 mb-2 splash-text-1 tracking-tight leading-tight">SELAMAT DATANG</h1>
+      <p class="text-xs sm:text-sm md:text-base text-emerald-200/70 mb-8 font-bold tracking-[0.2em] splash-text-2 uppercase">Portal Edukasi & Galeri</p>
+      
+      <button onclick="dismissSplash()" class="splash-btn w-full sm:w-auto group relative px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 rounded-full font-black text-sm tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_45px_rgba(16,185,129,0.6)] hover:scale-105 active:scale-95">
+        <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+        <span>Masuk Portal</span>
+        <div class="bg-slate-950 rounded-full p-1 text-emerald-400 group-hover:translate-x-1 transition-transform"><i data-lucide="chevron-right" class="w-4 h-4"></i></div>
+      </button>
+    </div>
+    <div class="z-10 text-[9px] text-emerald-300/50 tracking-wider text-center">&copy; <span id="current-year-splash">2026</span> SMP Negeri 6 Manokwari</div>
+  </div>
+
+  <!-- --- HALAMAN UTAMA --- -->
+  <div id="main-content" class="hidden flex-col min-h-screen relative z-10 transform-gpu">
+    
+    <!-- Navbar -->
+    <nav class="bg-white/95 dark:bg-[#081512]/90 backdrop-blur-xl border-b border-emerald-100 dark:border-emerald-500/20 sticky top-0 z-40 transition-colors duration-500 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 md:h-20 items-center gap-2">
+          
+          <!-- LOGO NAVBAR DENGAN BACKGROUND PUTIH -->
+          <div class="flex items-center gap-2 md:gap-3 shrink-0">
+            <div class="bg-white p-1 rounded-full shadow-sm border border-slate-100 dark:border-transparent flex items-center justify-center">
+              <img src="https://wsrv.nl/?url=i.ibb.co/JWy6dhzM/LOGO-SMP6-1-removebg-preview.png" alt="Logo Mini" fetchpriority="high" class="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-sm">
+            </div>
+            <div class="flex flex-col justify-center">
+              <h1 class="font-black text-xs sm:text-sm md:text-xl text-slate-900 dark:text-white tracking-wide leading-tight whitespace-nowrap transition-colors">SMP NEGERI 6 MANOKWARI</h1>
+              <span class="text-[7px] sm:text-[8px] md:text-[10px] text-emerald-600 dark:text-emerald-400 tracking-[0.15em] uppercase font-bold transition-colors">Unggul & Berprestasi</span>
+            </div>
+          </div>
+          
+          <!-- Menu Desktop -->
+          <div class="hidden md:flex gap-4 lg:gap-6 font-bold text-slate-600 dark:text-slate-300 text-xs tracking-widest uppercase items-center">
+            <button onclick="switchMenu('Beranda')" id="nav-btn-Beranda" class="nav-btn transition-colors py-2 text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-600 dark:border-emerald-400">Beranda</button>
+            <button onclick="switchMenu('Bahan Baca')" id="nav-btn-BahanBaca" class="nav-btn transition-colors py-2 flex items-center gap-1.5 hover:text-emerald-500"><i data-lucide="book-open" class="w-3.5 h-3.5"></i> Bahan Baca</button>
+            <button onclick="switchMenu('Galeri')" id="nav-btn-Galeri" class="nav-btn transition-colors py-2 hover:text-emerald-500">Galeri Umum</button>
+            <button onclick="switchMenu('Album')" id="nav-btn-Album" class="nav-btn transition-colors py-2 flex items-center gap-1.5 hover:text-emerald-500"><i data-lucide="folder" class="w-3.5 h-3.5"></i> Album Folder</button>
+            
+            <!-- Tombol Tema (Desktop) -->
+            <button onclick="toggleTheme()" class="ml-2 p-2 rounded-full bg-emerald-100 dark:bg-white/10 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-white/20 transition-all border border-emerald-300/30 dark:border-emerald-500/10">
+              <i data-lucide="sun" id="theme-icon-desktop-sun" class="w-4 h-4 hidden"></i>
+              <i data-lucide="moon" id="theme-icon-desktop-moon" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Menu Mobile -->
+          <div class="md:hidden flex items-center gap-2 max-w-[65%] shrink-0">
+            <div class="flex bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-full p-1 items-center overflow-x-auto no-scrollbar w-full">
+              <button onclick="switchMenu('Beranda')" id="mobile-nav-btn-Beranda" class="mobile-nav-btn px-2.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 whitespace-nowrap shrink-0 bg-emerald-500 text-slate-950 font-black shadow-md">Beranda</button>
+              <button onclick="switchMenu('Bahan Baca')" id="mobile-nav-btn-BahanBaca" class="mobile-nav-btn px-2.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-1 whitespace-nowrap shrink-0 text-slate-600 dark:text-slate-400">Baca</button>
+              <button onclick="switchMenu('Galeri')" id="mobile-nav-btn-Galeri" class="mobile-nav-btn px-2.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 whitespace-nowrap shrink-0 text-slate-600 dark:text-slate-400">Galeri</button>
+              <button onclick="switchMenu('Album')" id="mobile-nav-btn-Album" class="mobile-nav-btn px-2.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-1 whitespace-nowrap shrink-0 text-slate-600 dark:text-slate-400"><i data-lucide="folder" class="w-2.5 h-2.5"></i> Album</button>
+            </div>
+            <!-- Tombol Tema (Mobile) -->
+            <button onclick="toggleTheme()" class="p-1.5 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-emerald-400 border border-slate-300 dark:border-white/5 transition-all shrink-0">
+              <i data-lucide="sun" id="theme-icon-mobile-sun" class="w-3.5 h-3.5 hidden"></i>
+              <i data-lucide="moon" id="theme-icon-mobile-moon" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- --- KONTEN HALAMAN BERANDA --- -->
+    <div id="section-Beranda" class="menu-section flex-grow animate-in fade-in duration-500 transform-gpu">
+      <div class="relative py-12 md:py-20 overflow-hidden border-b border-emerald-100 dark:border-emerald-500/10 transition-colors duration-500">
+        
+        <!-- Latar Belakang Cepat -->
+        <div class="absolute inset-0 z-0">
+          <img src="https://wsrv.nl/?url=i.ibb.co/6c69f3Qm/IMG-20251120-WA0118-1-1.jpg" fetchpriority="high" alt="Background Beranda" class="w-full h-full object-cover object-center opacity-85 dark:opacity-40">
+          <div class="absolute inset-0 bg-emerald-50/80 dark:bg-[#071311]/85 backdrop-blur-[4px] transition-colors duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020617] transition-colors duration-500"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 bg-emerald-600/25 dark:bg-emerald-500/10 border border-emerald-500/40 dark:border-emerald-500/20 text-emerald-900 dark:text-emerald-300 text-[10px] md:text-xs font-black px-4 py-1.5 rounded-full mb-4 backdrop-blur-md tracking-widest uppercase transition-all shadow-sm">
+            <i data-lucide="flame" class="w-3.5 h-3.5 animate-pulse text-emerald-600 dark:text-emerald-400"></i> Inspirasi Hari Ini
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-6xl font-black text-slate-950 dark:text-white mb-4 tracking-tight leading-tight transition-colors">
+            Mading Digital <span class="text-emerald-700 dark:text-transparent dark:bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 font-extrabold">Siswa Pintar</span>
+          </h2>
+          <p class="text-xs sm:text-sm md:text-base text-slate-900 dark:text-emerald-100 font-bold max-w-xl leading-relaxed mx-auto md:mx-0 transition-colors">Kumpulan poster edukatif dan motivasi yang ter-update secara acak setiap hari!</p>
+          <button onclick="refreshMading()" class="mt-6 text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-900 dark:text-emerald-300 hover:text-white border border-emerald-500/30 dark:border-emerald-500/20 hover:border-emerald-500 dark:hover:border-emerald-400 px-5 py-2.5 rounded-full transition-all bg-emerald-500/10 dark:bg-black/20 hover:bg-emerald-600">🔄 Acak Ulang Mading</button>
+        </div>
+      </div>
+      
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
+        <div id="mading-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 transform-gpu">
+          <!-- Dinamis dari JS -->
+        </div>
+      </main>
+    </div>
+
+    <!-- --- KONTEN HALAMAN BAHAN BACA --- -->
+    <div id="section-BahanBaca" class="menu-section hidden flex-grow animate-in fade-in duration-500 transform-gpu">
+      <div class="relative py-12 md:py-20 overflow-hidden border-b border-emerald-100 dark:border-emerald-500/10 transition-colors duration-500 bg-gradient-to-br from-white to-emerald-50/50 dark:from-[#091714] dark:to-[#0c2420]">
+        <div class="absolute inset-0 bg-gradient-to-b from-emerald-100/20 dark:from-emerald-950/20 to-transparent pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200/20 dark:border-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-[9px] md:text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-4 backdrop-blur-md tracking-widest uppercase transition-colors">
+            <i data-lucide="book-open" class="w-3 h-3"></i> Pojok Baca Siswa
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-3 tracking-tight transition-colors">
+            Tumbuh, Belajar & <span class="text-emerald-600 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-emerald-300 dark:to-teal-300 font-extrabold">Berprestasi</span>
+          </h2>
+        </div>
+      </div>
+      
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
+        <div id="articles-container" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 transform-gpu">
+          <!-- Dinamis dari JS -->
+        </div>
+      </main>
+    </div>
+
+    <!-- --- KONTEN HALAMAN GALERI UMUM --- -->
+    <div id="section-Galeri" class="menu-section hidden flex-grow animate-in fade-in duration-500 transform-gpu">
+      <div class="relative py-12 md:py-20 overflow-hidden border-b border-emerald-100 dark:border-emerald-500/10 transition-colors duration-500">
+        <div class="absolute inset-0 z-0">
+          <img src="https://wsrv.nl/?url=i.ibb.co/6c69f3Qm/IMG-20251120-WA0118-1-1.jpg" fetchpriority="high" alt="Background Galeri" class="w-full h-full object-cover object-center opacity-60 dark:opacity-40">
+          <div class="absolute inset-0 bg-emerald-50/80 dark:bg-[#081512]/85 backdrop-blur-[3px] transition-colors duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-50/60 dark:to-[#081512] transition-colors duration-500"></div>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-white/5 border border-emerald-300 dark:border-white/10 text-emerald-800 dark:text-emerald-400 text-[9px] md:text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-4 backdrop-blur-md tracking-widest uppercase transition-colors">
+            <i data-lucide="image" class="w-3 h-3"></i> Galeri Umum
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-3 tracking-tight transition-colors">Koleksi <span class="text-emerald-600 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-emerald-300 dark:to-teal-300 font-extrabold">Foto Bersama</span></h2>
+        </div>
+      </div>
+
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 bg-white dark:bg-white/5 p-4 rounded-2xl border border-emerald-200/50 dark:border-emerald-500/10 backdrop-blur-md shadow-sm transition-colors">
+          <div class="text-center sm:text-left">
+            <h3 class="text-sm md:text-base font-black text-slate-900 dark:text-white flex items-center gap-2 justify-center sm:justify-start transition-colors"><i data-lucide="image" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i> Unggah Karya Umum</h3>
+            <p class="text-[11px] text-slate-500 dark:text-emerald-100/90 font-medium transition-colors">Tambahkan foto untuk ditampilkan di Galeri Utama (Tidak masuk folder).</p>
+          </div>
+          <label class="cursor-pointer bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white dark:text-slate-950 font-black text-xs uppercase tracking-wider px-5 py-3 rounded-xl transition-all shadow-md dark:shadow-[0_0_20px_rgba(16,185,129,0.2)] flex items-center gap-2 active:scale-95 shrink-0">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>+ Unggah ke Galeri</span>
+            <input type="file" id="file-gallery" accept="image/*" class="hidden" onchange="handleFileUpload(event, 'gallery')">
+          </label>
+        </div>
+
+        <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5 transform-gpu">
+          <!-- Dinamis dari JS -->
+        </div>
+      </main>
+    </div>
+
+    <!-- --- KONTEN HALAMAN ALBUM --- -->
+    <div id="section-Album" class="menu-section hidden flex-grow animate-in fade-in duration-500 transform-gpu">
+      <div class="relative py-12 md:py-20 overflow-hidden border-b border-emerald-100 dark:border-emerald-500/10 transition-colors duration-500">
+        <div class="absolute inset-0 z-0">
+          <img src="https://wsrv.nl/?url=i.ibb.co/6c69f3Qm/IMG-20251120-WA0118-1-1.jpg" fetchpriority="high" alt="Background Album" class="w-full h-full object-cover object-center opacity-60 dark:opacity-40">
+          <div class="absolute inset-0 bg-emerald-50/80 dark:bg-[#081512]/85 backdrop-blur-[3px] transition-colors duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-50/60 dark:to-[#081512] transition-colors duration-500"></div>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-white/5 border border-emerald-300 dark:border-white/10 text-emerald-800 dark:text-amber-400 text-[9px] md:text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 backdrop-blur-md tracking-widest uppercase transition-colors">
+            <i data-lucide="folder" class="w-3 h-3"></i> <span id="album-header-label">Koleksi Folder Album</span>
+          </div>
+          <h2 id="album-title" class="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-3 tracking-tight transition-colors">
+            <span class="text-emerald-600 dark:text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 font-extrabold">Folder</span> Dokumentasi
+          </h2>
+        </div>
+      </div>
+
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+        <!-- Tampilan Folder (Main View) -->
+        <div id="folders-view" class="transform-gpu">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 transition-colors"><i data-lucide="folder" class="w-4.5 h-4.5 text-emerald-500 dark:text-emerald-400"></i> Daftar Album Tersimpan</h3>
+            <button onclick="openCreateFolderModal()" class="bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/20 border border-slate-300 dark:border-white/10 text-slate-800 dark:text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl transition-all flex items-center gap-1 sm:gap-2 shadow-sm">
+              <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Buat Folder Baru</span><span class="sm:hidden">Baru</span>
+            </button>
+          </div>
+
+          <div id="folders-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5">
+            <!-- Dinamis dari JS -->
+          </div>
+        </div>
+
+        <!-- Tampilan Isi Folder yang Dipilih -->
+        <div id="folder-inside-view" class="hidden transform-gpu">
+          <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 mb-6 bg-white dark:bg-white/5 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-emerald-200/50 dark:border-emerald-500/5 backdrop-blur-md shadow-sm transition-colors">
+            <button onclick="closeAlbumView()" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-2 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 transition-all w-full sm:w-auto justify-center border border-emerald-200/30">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Kembali <span class="hidden sm:inline">ke Daftar</span>
+            </button>
+            
+            <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <button onclick="confirmDeleteFolder()" class="flex-1 sm:flex-none text-red-600 dark:text-red-400 hover:text-white flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-4 py-2.5 rounded-lg sm:rounded-xl border border-red-300 dark:border-red-500/30 bg-red-50 dark:bg-red-500/10 hover:bg-red-500 dark:hover:bg-red-500/80 transition-all shadow-sm">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Hapus Semuanya</span><span class="sm:hidden">Hapus</span>
+              </button>
+              <label class="flex-1 sm:flex-none cursor-pointer bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white dark:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-wider px-3 sm:px-4 py-2.5 rounded-lg sm:rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 sm:gap-2 active:scale-95 shrink-0">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i> <span>Upload <span class="hidden sm:inline">Ke Folder Ini</span></span>
+                <input type="file" id="file-album" accept="image/*" class="hidden" onchange="handleFileUpload(event, 'album')">
+              </label>
+            </div>
+          </div>
+
+          <div id="folder-photos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5 relative z-10">
+            <!-- Dinamis dari JS -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- --- FOOTER --- -->
+    <footer class="bg-white dark:bg-[#050c0a] text-slate-500 py-6 border-t border-emerald-100 dark:border-emerald-500/20 mt-auto transition-colors relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        
+        <!-- LOGO FOOTER DENGAN BACKGROUND PUTIH -->
+        <div class="flex items-center gap-2.5">
+          <div class="bg-white p-1 rounded-full shadow-sm">
+            <img src="https://wsrv.nl/?url=i.ibb.co/JWy6dhzM/LOGO-SMP6-1-removebg-preview.png" alt="Logo Footer" class="w-7 h-7 md:w-8 md:h-8 object-contain transition-all">
+          </div>
+          <div class="text-left">
+            <h4 class="text-slate-750 dark:text-white font-black text-xs tracking-wider uppercase leading-tight transition-colors">SMP NEGERI 6 MANOKWARI</h4>
+            <p class="text-[8px] uppercase tracking-wider text-slate-500 dark:text-emerald-500/80 transition-colors">Generasi Emas Masa Depan</p>
+          </div>
+        </div>
+        
+        <div class="text-[9px] md:text-xs tracking-wider text-slate-500 dark:text-emerald-600/50 transition-colors">&copy; <span id="current-year-footer">2026</span> SMP Negeri 6 Manokwari. Hak Cipta Dilindungi.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- --- MODAL DIALOGS --- -->
+  
+  <!-- Modal Buat Folder -->
+  <div id="modal-create-folder" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 p-4 sm:p-6 transition-colors transform-gpu">
+     <div class="w-full max-w-md bg-white dark:bg-[#050a1d] border border-slate-200 dark:border-emerald-500/20 rounded-2xl p-6 shadow-2xl animate-in zoom-in-95 duration-300 text-slate-900 dark:text-white">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-extrabold flex items-center gap-2"><i data-lucide="folder-plus" class="w-4.5 h-4.5 text-emerald-600 dark:text-emerald-400"></i> Buat Folder Baru</h3>
+        <button onclick="closeCreateFolderModal()" class="text-slate-400 hover:text-slate-900 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="folder-error" class="mb-4 hidden bg-red-100 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-600 dark:text-red-400 text-xs p-3 rounded-lg flex items-center gap-2 animate-pulse">
+        <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> <span id="folder-error-text">Sandi Keamanan Salah!</span>
+      </div>
+      <form onsubmit="executeCreateFolder(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-emerald-300 mb-1.5">Nama Folder <span class="text-red-500">*</span></label>
+          <input type="text" id="folder-name-input" required placeholder="Contoh: Lomba 17 Agustus" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-emerald-500/20 rounded-xl px-4 py-3 text-sm text-slate-950 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-emerald-300 mb-1.5 flex items-center gap-1"><i data-lucide="key" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i> Sandi Keamanan Admin <span class="text-red-500">*</span></label>
+          <input type="password" id="folder-pass-input" required placeholder="Masukkan sandi..." class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-emerald-500/20 rounded-xl px-4 py-3 text-sm text-slate-950 dark:text-white focus:outline-none focus:border-emerald-500 tracking-widest">
+        </div>
+        <div class="flex gap-3 pt-2">
+          <button type="button" onclick="closeCreateFolderModal()" class="flex-1 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 font-bold text-xs py-3 rounded-xl transition-all">Batal</button>
+          <button type="submit" class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white dark:text-slate-950 font-black text-xs py-3 rounded-xl transition-all shadow-md">Buat Folder</button>
+        </div>
+      </form>
+     </div>
+  </div>
+
+  <!-- Modal Upload Detail -->
+  <div id="modal-upload" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 p-4 sm:p-6 transition-colors transform-gpu">
+    <div class="w-full max-w-md bg-white dark:bg-[#050a1d] border border-slate-200 dark:border-emerald-500/20 rounded-2xl p-5 md:p-6 shadow-2xl animate-in zoom-in-95 duration-300 transition-colors">
+      <div class="flex justify-between items-center mb-4 md:mb-6">
+        <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="upload" class="w-4.5 h-4.5 text-emerald-600 dark:text-emerald-400"></i> Upload ke Server
+        </h3>
+        <button onclick="closeUploadModal()" class="text-slate-400 hover:text-slate-900 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div id="upload-error" class="mb-4 hidden bg-red-100 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-600 dark:text-red-400 text-xs p-3 rounded-lg flex items-center gap-2 animate-pulse"><i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> <span id="upload-error-text">Gagal</span></div>
+
+      <div class="relative aspect-[16/9] rounded-xl overflow-hidden mb-4 border border-slate-200 dark:border-emerald-500/20 bg-slate-100 dark:bg-black">
+        <img id="upload-preview-img" src="" alt="Pratinjau" class="w-full h-full object-cover">
+        <div id="upload-loading" class="absolute inset-0 bg-black/60 hidden flex items-center justify-center backdrop-blur-sm">
+          <i data-lucide="loader-2" class="animate-spin text-emerald-500 w-8 h-8"></i>
+        </div>
+      </div>
+
+      <form onsubmit="executeSavePhoto(event)" class="space-y-3 md:space-y-4 text-left text-slate-900 dark:text-white">
+        <div>
+          <label class="block text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-emerald-300 mb-1.5 flex items-center gap-1"><i data-lucide="file-text" class="w-3 h-3"></i> Judul Foto <span class="text-red-500">*</span></label>
+          <input type="text" id="upload-title" required placeholder="Contoh: Keseruan Class Meeting" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-emerald-500/20 rounded-xl px-4 py-2.5 text-xs text-slate-950 dark:text-white focus:outline-none focus:border-emerald-500 transition-colors">
+        </div>
+        <div>
+          <label class="block text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-emerald-300 mb-1.5">Deskripsi Singkat</label>
+          <textarea rows="2" id="upload-desc" placeholder="Ceritakan sedikit..." class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-emerald-500/20 rounded-xl px-4 py-2.5 text-xs text-slate-950 dark:text-white focus:outline-none focus:border-emerald-500 resize-none transition-colors"></textarea>
+        </div>
+        <div>
+          <label class="block text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-emerald-300 mb-1.5 flex items-center gap-1"><i data-lucide="key" class="w-3 h-3 text-emerald-600 dark:text-emerald-400"></i> Sandi Admin <span class="text-red-500">*</span></label>
+          <input type="password" id="upload-pass" required placeholder="Masukkan sandi..." class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-emerald-500/20 rounded-xl px-4 py-2.5 text-xs text-slate-950 dark:text-white focus:outline-none focus:border-emerald-500 tracking-widest transition-colors">
+        </div>
+        <div class="flex gap-2 sm:gap-3 pt-2">
+          <button type="button" onclick="closeUploadModal()" class="flex-1 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 font-bold text-[10px] sm:text-xs py-3 rounded-xl transition-all">Batal</button>
+          <button type="submit" id="upload-submit-btn" class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white dark:text-slate-950 font-black text-[10px] sm:text-xs py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+            Publikasikan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Hapus -->
+  <div id="modal-delete" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 p-4 sm:p-6 transform-gpu">
+    <div class="w-full max-w-sm bg-white dark:bg-[#0a0505] border border-red-200 dark:border-red-500/20 rounded-2xl p-6 shadow-2xl animate-in zoom-in-95 duration-200 text-center transition-colors">
+      <div class="w-16 h-16 bg-red-50 dark:bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-red-100 dark:border-red-500/20">
+        <i data-lucide="alert-triangle" class="text-red-500 w-8 h-8"></i>
+      </div>
+      <h3 id="delete-title" class="text-xl font-bold text-slate-900 dark:text-white mb-2">Hapus</h3>
+      <p id="delete-desc" class="text-slate-600 dark:text-emerald-100/90 text-sm mb-6 leading-relaxed">Apakah Anda yakin?</p>
+      <div class="flex gap-3">
+        <button onclick="closeDeleteModal()" class="flex-1 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 font-bold text-xs py-3.5 rounded-xl transition-all uppercase tracking-wider">Batal</button>
+        <button onclick="executeDelete()" class="flex-1 bg-red-600 hover:bg-red-500 text-white font-black text-xs py-3.5 rounded-xl transition-all shadow-md uppercase tracking-wider flex items-center justify-center gap-2">
+          Ya, Hapus!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- LIGHTBOX PREVIEW MODAL --- -->
+  <div id="modal-lightbox" class="fixed inset-0 z-[80] hidden flex items-center justify-center bg-black/90 dark:bg-[#071311]/95 backdrop-blur-xl p-4 sm:p-6 transition-colors duration-300 transform-gpu">
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full backdrop-blur-md transition-all z-[90]" aria-label="Tutup"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <div id="lightbox-wrapper" class="w-full flex flex-col items-center justify-center h-full max-h-[90vh] animate-in zoom-in-95 duration-300 max-w-3xl">
+      
+      <div id="lightbox-media-container" class="relative w-full flex-grow flex items-center justify-center overflow-hidden mb-4 rounded-xl max-h-[45vh] md:max-h-[55vh]">
+        <img id="lightbox-img" src="" alt="Pratinjau Besar" decoding="sync" fetchpriority="high" class="w-full h-full drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] object-contain">
+      </div>
+      
+      <div id="lightbox-content-box" class="w-full bg-white/95 dark:bg-[#071311]/95 border border-emerald-200 dark:border-emerald-500/20 p-5 md:p-8 rounded-2xl backdrop-blur-2xl text-center flex-shrink-0 shadow-2xl flex flex-col transition-colors max-h-[40vh]">
+        <span id="lightbox-tag" class="inline-block border text-[9px] md:text-xs font-black px-3 py-1 rounded-full mb-3 uppercase tracking-[0.15em] mx-auto w-max flex items-center gap-1.5 transition-colors">
+          <!-- Dinamis dari JS -->
+        </span>
+        <h3 id="lightbox-title" class="font-black text-slate-900 dark:text-white mb-3 tracking-tight leading-tight shrink-0 transition-colors text-base sm:text-lg md:text-2xl line-clamp-1">---</h3>
+        <div id="lightbox-separator" class="w-12 h-[2px] mx-auto mb-4 shrink-0 rounded-full transition-colors bg-emerald-400"></div>
+        <div class="overflow-y-auto custom-scrollbar flex-grow pr-2 text-left md:text-justify mb-4">
+          <p id="lightbox-desc" class="text-slate-800 dark:text-emerald-50/95 font-bold transition-colors text-[11px] sm:text-xs md:text-sm leading-relaxed text-center">---</p>
+        </div>
+        <!-- TOMBOL DOWNLOAD BARU -->
+        <div class="mt-auto shrink-0 flex justify-center">
+          <button id="lightbox-download-btn" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-emerald-500 text-white dark:text-slate-950 font-black text-[10px] md:text-xs transition-all shadow-md dark:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-lg dark:hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] active:scale-95 uppercase tracking-wider">
+            <i data-lucide="download" class="w-4 h-4"></i> Simpan Foto
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- FIREBASE BUNDLED SCRIPTS (PENTING UNTUK HOSTING GITHUB) --- -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+    import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDGYjSeAfRvvhsYSfZy-8bTnu2vH7ubREA",
+      authDomain: "website-galeri-sekolah.firebaseapp.com",
+      projectId: "website-galeri-sekolah",
+      storageBucket: "website-galeri-sekolah.firebasestorage.app",
+      messagingSenderId: "55628582049",
+      appId: "1:55628582049:web:1c91ec9298037203f9f4e0",
+      measurementId: "G-1Z6F172CQ0"
+    };
+
+    let app, auth, db;
+    const appId = "website-galeri-sekolah";
+
+    try {
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+    } catch(e) {
+      console.error("Firebase inisialisasi gagal", e);
+    }
+
+    window.dbRef = db;
+    window.authRef = auth;
+    window.appIdVal = appId;
+    window.collectionRef = collection;
+    window.addDocRef = addDoc;
+    window.deleteDocRef = deleteDoc;
+    window.docRef = doc;
+    window.onSnapshotRef = onSnapshot;
+
+    signInAnonymously(auth).then((userCredential) => {
+      window.currentUser = userCredential.user;
+      if (typeof window.initDatabaseListeners === "function") {
+        window.initDatabaseListeners();
+      }
+    }).catch((err) => {
+      console.error("Gagal login anonim, mencoba memuat data tanpa otentikasi...", err);
+      if (typeof window.initDatabaseListeners === "function") {
+        window.initDatabaseListeners();
+      }
+    });
+  </script>
+
+  <!-- --- SCRIPT UTAMA PERILAKU APLIKASI --- -->
+  <script>
+    const currentYear = new Date().getFullYear();
+    document.getElementById('current-year-splash').textContent = currentYear;
+    document.getElementById('current-year-footer').textContent = currentYear;
+
+    // --- PASSWORD ADMIN ---
+    const ADMIN_PASSWORD = "60400173";
+
+    const defaultPhotos = [
+      { id: 1, url: 'https://wsrv.nl/?url=i.ibb.co/sprdyxxv/IMG-20241012-WA0017.jpg', title: 'Momen Kebersamaan Siswa', description: 'Suasana penuh keceriaan dan kebersamaan siswa-siswi SMP Negeri 6 Manokwari dalam kegiatan sekolah.' },
+      { id: 2, url: 'https://wsrv.nl/?url=i.ibb.co/nNXHmDBD/Whats-App-Image-2024-10-21-at-14-02-16.jpg', title: 'Aktivitas Kelas', description: 'Fokus dan antusiasme siswa saat mengikuti proses pembelajaran di dalam kelas.' },
+      { id: 3, url: 'https://wsrv.nl/?url=i.ibb.co/d4M7mr5H/IMG-20241012-WA0018.jpg', title: 'Giat Ekstrakurikuler', description: 'Pengembangan minat dan bakat melalui kegiatan ekstrakurikuler yang aktif dan menyenangkan.' },
+      { id: 4, url: 'https://wsrv.nl/?url=i.ibb.co/LVDwLMX/IMG-20241004-WA0022-1.jpg', title: 'Kegiatan Pramuka', description: 'Membangun karakter disiplin, mandiri, dan gotong royong melalui kepramukaan.' },
+      { id: 5, url: 'https://wsrv.nl/?url=i.ibb.co/qFCBVftt/IMG-20240404-WA0002.jpg', title: 'Apel Pagi', description: 'Disiplin baris-berbaris dan mendengarkan arahan dari bapak/ibu guru saat apel pagi.' },
+      { id: 6, url: 'https://wsrv.nl/?url=i.ibb.co/39pPSGYT/IMG-20240404-WA0004.jpg', title: 'Suasana Upacara', description: 'Sikap khidmat seluruh civitas akademika dalam mengikuti upacara bendera.' },
+      { id: 7, url: 'https://wsrv.nl/?url=i.ibb.co/rRFyQxLs/Whats-App-Image-2025-01-10-at-12-34-33.jpg', title: 'Kegiatan Keagamaan', description: 'Pembinaan rohani dan akhlak mulia sebagai fondasi utama pendidikan karakter.' },
+      { id: 8, url: 'https://wsrv.nl/?url=i.ibb.co/Df4x3vX6/IMG-20250602-WA0136.jpg', title: 'Praktik Lapangan', description: 'Pembelajaran kontekstual di luar kelas untuk memperkaya wawasan siswa.' },
+      { id: 9, url: 'https://wsrv.nl/?url=i.ibb.co/4RQtDkP2/IMG-20250602-WA0102.jpg', title: 'Kreasi Seni', description: 'Penyaluran bakat seni dan kreativitas siswa dalam berbagai karya.' },
+      { id: 10, url: 'https://wsrv.nl/?url=i.ibb.co/ccRzXgs4/IMG-20250602-WA0104.jpg', title: 'Pentas Budaya', description: 'Pelestarian kebudayaan lokal melalui penampilan memukau dari para siswa.' },
+      { id: 11, url: 'https://wsrv.nl/?url=i.ibb.co/fGkSwhkm/IMG-20250602-WA0078.jpg', title: 'Kerja Kelompok', description: 'Melatih kemampuan kolaborasi dan komunikasi melalui diskusi kelompok.' },
+      { id: 12, url: 'https://wsrv.nl/?url=i.ibb.co/1YYGvm2b/Gambar-Whats-App-2025-08-08-pukul-11-25-55-e621757c.jpg', title: 'Prestasi Olahraga', description: 'Menjunjung tinggi sportivitas dan semangat pantang menyerah di lapangan.' },
+      { id: 13, url: 'https://wsrv.nl/?url=i.ibb.co/nqCdPVkv/Gambar-Whats-App-2025-08-08-pukul-11-25-54-3179a417.jpg', title: 'Lomba Antar Kelas', description: 'Keseruan dan kekompakan kelas dalam ajang perlombaan internal sekolah.' },
+      { id: 14, url: 'https://wsrv.nl/?url=i.ibb.co/9H5rhNSJ/Gambar-Whats-App-2025-08-08-pukul-11-25-56-85005932.jpg', title: 'Kegiatan OSIS', description: 'Melatih jiwa kepemimpinan dan organisasi melalui program kerja OSIS.' },
+      { id: 15, url: 'https://i.ibb.co/9mGy0SFN/Gambar-Whats-App-2025-08-08-pukul-11-25-53-cf63e154.jpg', title: 'Hari Guru Nasional', description: 'Momen penuh haru dan apresiasi siswa kepada pahlawan tanpa tanda jasa.' },
+      { id: 16, url: 'https://i.ibb.co/yB0XFs0z/Gambar-Whats-App-2025-08-11-pukul-11-14-53-1c92dcfe.jpg', title: 'Perayaan Kemerdekaan', description: 'Menumbuhkan semangat nasionalisme melalui lomba dan perayaan 17 Agustus.' },
+      { id: 17, url: 'https://i.ibb.co.com/PzxRnYHM/Gambar-Whats-App-2025-08-11-pukul-11-14-52-b6579d4d.jpg', title: 'Kegiatan Bakti Sosial', description: 'Menanamkan rasa kepedulian dan empati terhadap sesama melalui bakti sosial.' },
+      { id: 18, url: 'https://i.ibb.co/zHmP4s7C/IMG-20251114-WA0012-1.jpg', title: 'Persiapan Ujian', description: 'Fokus dan keseriusan siswa-siswi dalam menghadapi masa ujian sekolah.' },
+      { id: 19, url: 'https://i.ibb.co/d9mpGkW/IMG-20251114-WA0011-1.jpg', title: 'Suasana Ujian', description: 'Menjunjung tinggi kejujuran dan integritas selama pelaksanaan ujian.' },
+      { id: 20, url: 'https://i.ibb.co/5XZ0Ck2j/IMG-20251114-WA0018-1.jpg', title: 'Perpisahan Kelas IX', description: 'Acara purnawiyata yang penuh makna dan doa restu untuk langkah selanjutnya.' },
+      { id: 21, url: 'https://i.ibb.co/W4FBGLfh/IMG-20251114-WA0015-1.jpg', title: 'Foto Bersama Guru', description: 'Momen kebersamaan yang akan selalu dikenang antara siswa and wali kelas.' },
+      { id: 22, url: 'https://i.ibb.co/0RmKN3JZ/IMG-20251114-WA0016-1.jpg', title: 'Kenangan Manis', description: 'Senyum bahagia menutup perjalanan indah menuntut ilmu di SMP Negeri 6 Manokwari.' }
+    ];
+
+    const allPosters = [
+      { id: 'p1', category: 'Penting & Mendesak', icon: 'shield-alert', url: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80', title: 'Stop Perundungan (Bullying)! Jadikan Sekolah Zona Aman', description: 'Mari bersama putus rantai perundungan. Sekolah adalah rumah kedua kita. Jadilah pelindung bagi temanmu, bukan penindas. Jika kamu melihat atau mengalami bullying, segera laporkan ke Guru BK. Bersuara itu berani!' },
+      { id: 'p2', category: 'Tips Belajar', icon: 'lightbulb', url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80', title: 'Teknik Pomodoro: Rahasia Fokus Tanpa Bosan', description: 'Merasa cepat lelah saat belajar? Coba Teknik Pomodoro! Belajar fokus selama 25 menit, lalu istirahat 5 menit. Ulangi 4 kali dan ambil istirahat panjang 15 menit. Otakmu butuh jeda untuk menyerap informasi lebih optimal.' },
+      { id: 'p3', category: 'Kesehatan Mental', icon: 'heart-pulse', url: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=800&q=80', title: 'It\'s Okay Not To Be Okay. Jaga Kesehatan Mentalmu', description: 'Tekanan tugas dan ujian kadang membuat stres. Menangis atau merasa lelah adalah hal yang manusiawi. Jangan pendam sendirian, bicaralah dengan orang tua, sahabat, atau guru yang kamu percaya. Nilaimu tidak mendefinisikan seluruh dirimu.' },
+      { id: 'p4', category: 'Edukasi Digital', icon: 'compass', url: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80', title: 'Saring Sebelum Sharing: Bijak Bermedia Sosial', description: 'Jejak digital itu abadi. Hati-hati sebelum memposting foto, komentar, atau berita yang belum jelas kebenarannya (hoaks). Tunjukkan karakter Pelajar Pancasila di dunia maya, jadilah netizen yang cerdas and beretika.' },
+      { id: 'p5', category: 'Motivasi', icon: 'flame', url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80', title: 'Eksplorasi Bakatmu Bersama Kurikulum Merdeka', description: 'Setiap siswa memiliki kecerdasan yang unik. Tidak semua harus pintar matematika, mungkin bakatmu ada di seni, olahraga, atau kepemimpinan. Kurikulum Merdeka memberikanmu ruang untuk menggali potensi terpendam. Jangan takut mencoba hal baru!' },
+      { id: 'p6', category: 'Tips Produktif', icon: 'star', url: 'https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?auto=format&fit=crop&w=800&q=80', title: 'Kurangi Begadang, Otak Butuh Istirahat', description: 'Tahukah kamu bahwa memori jangka panjang dibentuk saat kita tidur pulas? Kurangi bermain gawai di malam hari dan tidurlah minimal 7-8 jam agar besok bisa menyerap pelajaran dengan maksimal.' },
+      { id: 'p7', category: 'Pengembangan Diri', icon: 'target', url: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80', title: 'Kekuatan Kata "Belum": Growth Mindset', description: 'Jangan katakan "Saya tidak bisa", tapi katakan "Saya BELUM bisa". Pola pikir berkembang (Growth Mindset) membuatmu menyadari bahwa kecerdasan bisa dilatih melalui usaha dan latihan keras.' }
+    ];
+
+    const articles = [
+      { id: 'a1', category: 'Motivasi', icon: 'flame', url: 'https://images.unsplash.com/photo-1494178270175-e96de2971df9?auto=format&fit=crop&w=800&q=80', title: 'Gagal Ujian Bukan Akhir Dunia, Tapi Awal Evaluasi', description: 'Banyak dari kita merasa hancur ketika mendapatkan nilai jelek. Padahal, Thomas Alva Edison gagal ribuan kali sebelum menemukan lampu pijar. Nilai buruk adalah sinyal bahwa ada cara belajar yang harus diperbaiki. Mari ubah kecewa menjadi semangat baru! Evaluasi metode belajarmu, cari tahu di mana letak kelemahanmu, dan jangan ragu bertanya pada guru. Masa depanmu ditentukan oleh seberapa cepat kamu bangkit, bukan seberapa sering kamu jatuh.' },
+      { id: 'a2', category: 'Bakat & Minat', icon: 'target', url: 'https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80', title: 'Cara Jitu Menemukan Passion Tersembunyimu di Sekolah', description: 'Bingung ingin jadi apa nanti? Sekolah adalah laboratorium terbaik untuk mencoba segala hal. Ikutilah ekstrakurikuler yang tidak pernah kamu bayangkan sebelumnya. Coba teater, jurnalistik, Paskibra, atau karya ilmiah remaja. Perhatikan kegiatan apa yang membuatmu "lupa waktu" saat mengerjakannya. Itulah petunjuk passion-mu! Jangan membatasi diri, karena bakat hebat seringkali ditemukan di luar zona nyaman.' },
+      { id: 'a3', category: 'Inspirasi', icon: 'feather', url: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80', title: 'Kekuatan Magis Membaca 15 Menit Sehari', description: 'Buku adalah jendela dunia, tapi berapa banyak dari kita yang rutin membukanya? Gerakan Literasi Sekolah (GLS) bukan sekadar aturan, melainkan investasi otak. Membaca 15 menit sehari dapat menambah ribuan kosakata baru dalam setahun, menajamkan fokus, dan melatih imajinasi. Mulailah dari novel fiksi yang ringan, komik edukasi, atau biografi tokoh idola. Rasakan sendiri bagaimana cara bicaramu menjadi lebih terstruktur dan wawasanmu semakin luas!' },
+      { id: 'a4', category: 'Peningkatan Diri', icon: 'star', url: 'https://images.unsplash.com/photo-1475721028070-2051d528b0be?auto=format&fit=crop&w=800&q=80', title: 'Tips Membangun Kepercayaan Diri di Depan Kelas', description: 'Sering gugup saat disuruh presentasi? Keringat dingin, suara bergetar, dan tiba-tiba lupa materi? Tenang, itu wajar! Public speaking adalah otot yang harus dilatih. Pertama, kuasai materinya, bukan menghafal kata per kata. Kedua, tatap dahi atau atas kepala audiens jika belum berani menatap mata. Ketiga, latihan di depan cermin. Sekolah adalah tempat yang aman untuk melakukan kesalahan. Jadikan setiap tugas presentasi sebagai panggung latihan mentalmu.' },
+      { id: 'a5', category: 'Bakat & Minat', icon: 'target', url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80', title: 'Dari Hobi Menjadi Prestasi: Jangan Remehkan Kegemaranmu', description: 'Suka menggambar coret-coretan di buku tulis? Suka mengedit video di HP? Atau suka merakit barang bekas? Jangan buang hobimu! Di era digital saat ini, hobi yang ditekuni dengan serius bisa berubah menjadi prestasi dan jalan karir. Ikutilah lomba desain poster, festival film pendek pelajar, atau kompetisi inovasi. Komunikasikan minatmu pada guru yang relevan, mereka pasti akan membimbingmu memaksimalkan potensi tersebut.' }
+    ];
+
+    const compressImage = (file, maxWidth, maxHeight, quality) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+            if (width > height) {
+              if (width > maxWidth) {
+                height = Math.round((height * maxWidth) / width);
+                width = maxWidth;
+              }
+            } else {
+              if (height > maxHeight) {
+                width = Math.round((width * maxHeight) / height);
+                height = maxHeight;
+              }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = (error) => reject(error);
+        };
+        reader.onerror = (error) => reject(error);
+      });
+    };
+
+    let activeMenu = 'Beranda';
+    let firebasePhotos = [];
+    let folders = [];
+    let albumPhotos = [];
+    let displayPosters = [];
+    let isDarkMode = true;
+    let selectedAlbum = null; 
+    let tempFileBase64 = null;
+    let uploadTarget = 'gallery'; 
+    let itemToDelete = null;
+
+    function dismissSplash() {
+      const splash = document.getElementById('splash-screen');
+      splash.classList.add('splash-exit');
+      document.getElementById('main-content').classList.remove('hidden');
+      document.getElementById('main-content').classList.add('flex');
+      lucide.createIcons();
+      setTimeout(() => { splash.style.display = 'none'; }, 800);
+    }
+
+    function switchMenu(menuId) {
+      activeMenu = menuId;
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.className = "nav-btn transition-colors py-2 text-slate-500 dark:text-slate-400 hover:text-emerald-500";
+      });
+      document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+        btn.className = "mobile-nav-btn px-2.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 whitespace-nowrap shrink-0 text-slate-600 dark:text-slate-400";
+      });
+      const activeDesktop = document.getElementById(`nav-btn-${menuId.replace(' ', '')}`);
+      if (activeDesktop) activeDesktop.className = "nav-btn transition-colors py-2 text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-600 dark:border-emerald-400";
+      const activeMobile = document.getElementById(`mobile-nav-btn-${menuId.replace(' ', '')}`);
+      if (activeMobile) activeMobile.className = "mobile-nav-btn px-2.5 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 whitespace-nowrap shrink-0 bg-emerald-500 text-slate-950 font-black shadow-md";
+      
+      document.querySelectorAll('.menu-section').forEach(section => section.classList.add('hidden'));
+      document.getElementById(`section-${menuId.replace(' ', '')}`).classList.remove('hidden');
+      
+      if(menuId !== 'Album') {
+        selectedAlbum = null;
+        document.getElementById('folders-view').classList.remove('hidden');
+        document.getElementById('folder-inside-view').classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('ambient-lights').classList.remove('hidden');
+        document.getElementById('theme-icon-desktop-sun').classList.add('hidden');
+        document.getElementById('theme-icon-desktop-moon').classList.remove('hidden');
+        document.getElementById('theme-icon-mobile-sun').classList.add('hidden');
+        document.getElementById('theme-icon-mobile-moon').classList.remove('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('ambient-lights').classList.add('hidden');
+        document.getElementById('theme-icon-desktop-sun').classList.remove('hidden');
+        document.getElementById('theme-icon-desktop-moon').classList.add('hidden');
+        document.getElementById('theme-icon-mobile-sun').classList.remove('hidden');
+        document.getElementById('theme-icon-mobile-moon').classList.add('hidden');
+      }
+    }
+    document.documentElement.classList.add('dark');
+
+    function refreshMading() {
+      displayPosters = shuffleArray(allPosters).slice(0, 5);
+      renderMading();
+    }
+
+    function renderMading() {
+      const container = document.getElementById('mading-container');
+      container.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+      
+      displayPosters.forEach((poster, index) => {
+        const item = document.createElement('div');
+        const isFeatured = index === 0;
+        item.className = `group relative rounded-2xl md:rounded-3xl overflow-hidden border border-emerald-200/50 dark:border-emerald-500/10 hover:border-emerald-500/40 dark:hover:border-emerald-500/50 transition-all duration-500 cursor-pointer shadow-md hover:shadow-xl dark:shadow-2xl flex ${isFeatured ? 'flex-col md:col-span-2 lg:col-span-2 md:flex-row' : 'flex-row md:flex-col'} bg-white dark:bg-slate-900/50 animate-in fade-in zoom-in-95 duration-500 items-stretch md:items-start p-3 md:p-0`;
+        item.onclick = () => openLightbox(poster, 'Beranda');
+        const imgWrapperClass = isFeatured ? 'w-full md:w-3/5 aspect-video md:aspect-[16/10] overflow-hidden bg-black shrink-0 rounded-xl md:rounded-none' : 'w-20 h-20 sm:w-28 sm:h-28 md:w-full md:aspect-[4/3] overflow-hidden bg-black shrink-0 rounded-xl md:rounded-none self-center';
+        const textWrapperClass = isFeatured ? 'p-4 md:p-6 flex flex-col justify-center flex-grow' : 'p-3 md:p-6 flex flex-col justify-center flex-grow min-w-0 w-full';
+        const titleClass = isFeatured ? 'font-black text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-snug text-base sm:text-xl md:text-2xl' : 'font-black text-slate-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-snug text-xs sm:text-sm line-clamp-2';
+        const descClass = isFeatured ? 'text-slate-800 dark:text-emerald-100/90 font-bold text-xs leading-relaxed line-clamp-2 md:line-clamp-4 mb-2 md:mb-4' : 'text-slate-855 dark:text-emerald-100/95 font-semibold text-[10px] sm:text-xs leading-relaxed line-clamp-2 md:line-clamp-3 mb-2';
+
+        item.innerHTML = `
+          <div class="${imgWrapperClass}">
+            <img src="${poster.url}" alt="${poster.title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 dark:from-[#081512] via-transparent to-transparent opacity-70 dark:opacity-90 transition-opacity"></div>
+          </div>
+          <div class="${textWrapperClass}">
+            <h3 class="${titleClass}">${poster.title}</h3>
+            <p class="${descClass}">${poster.description}</p>
+            <div class="mt-auto pt-2 md:pt-3 border-t border-slate-100 dark:border-emerald-500/10 flex items-center text-[9px] sm:text-[10px] md:text-xs font-extrabold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">
+              <span>Baca</span><i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        `;
+        fragment.appendChild(item);
+      });
+      container.appendChild(fragment);
+      lucide.createIcons();
+    }
+
+    function renderArticles() {
+      const container = document.getElementById('articles-container');
+      container.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+      
+      articles.forEach((article) => {
+        const item = document.createElement('div');
+        item.className = "group bg-white dark:bg-slate-900/50 rounded-xl md:rounded-2xl overflow-hidden border border-emerald-200/50 dark:border-emerald-500/10 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg dark:shadow-lg flex flex-row md:flex-col items-stretch md:items-start p-3 md:p-0";
+        item.onclick = () => openLightbox(article, 'Bahan Baca');
+        item.innerHTML = `
+          <div class="relative w-20 h-20 sm:w-28 sm:h-28 md:w-full md:aspect-[16/9] overflow-hidden bg-black shrink-0 rounded-xl md:rounded-none self-center">
+            <img src="${article.url}" alt="${article.title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100">
+            <span class="absolute top-2 left-2 bg-emerald-600/90 backdrop-blur-md text-white text-[8px] md:text-[9px] font-bold px-2 py-1 rounded-full uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="${article.icon}" class="w-3 h-3"></i> <span class="hidden sm:inline">${article.category}</span>
+            </span>
+          </div>
+          <div class="p-3 md:p-6 flex flex-col flex-grow justify-center md:justify-start bg-white dark:bg-gradient-to-b dark:from-[#091714] dark:to-white/[0.01] w-2/3 md:w-full min-w-0">
+            <h3 class="text-xs sm:text-base md:text-lg font-black text-slate-900 dark:text-white mb-1.5 md:mb-3 group-hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors leading-snug line-clamp-2">${article.title}</h3>
+            <p class="text-slate-600 dark:text-emerald-100/95 font-medium text-[10px] sm:text-xs leading-relaxed line-clamp-2 md:line-clamp-3 mb-2 md:mb-4">${article.description}</p>
+            <div class="mt-auto pt-2 md:pt-4 border-t border-slate-100 dark:border-emerald-500/10 flex items-center text-[9px] md:text-[10px] font-bold text-slate-500 dark:text-slate-300 tracking-wider uppercase group-hover:text-emerald-500 transition-colors">
+              Mulai Membaca <i data-lucide="arrow-right" class="w-3 h-3 ml-1.5 group-hover:translate-x-2 transition-transform"></i>
+            </div>
+          </div>
+        `;
+        fragment.appendChild(item);
+      });
+      container.appendChild(fragment);
+      lucide.createIcons();
+    }
+
+    function renderGallery() {
+      const container = document.getElementById('gallery-grid');
+      container.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+      const allPhotos = [...firebasePhotos, ...defaultPhotos];
+      
+      allPhotos.forEach((photo) => {
+        const item = document.createElement('div');
+        item.className = "group relative bg-white dark:bg-slate-900/50 rounded-xl md:rounded-2xl overflow-hidden border border-emerald-200/50 dark:border-emerald-500/10 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 shadow-sm hover:shadow-lg flex flex-col animate-in fade-in zoom-in-95";
+        let deleteBtn = typeof photo.id === 'string' ? `
+            <button onclick="confirmDelete('photo', '${photo.id}', true, event)" class="absolute top-2 right-2 z-20 bg-red-500 hover:bg-red-600 text-white p-1.5 rounded-lg opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md shadow-sm" title="Hapus Foto">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>` : '';
+
+        item.innerHTML = `
+          ${deleteBtn}
+          <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-200 dark:bg-black cursor-pointer" onclick='openLightbox(${JSON.stringify(photo).replace(/"/g, "&quot;")}, "Galeri")'>
+            <img src="${photo.url}" alt="${photo.title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-out">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 dark:from-[#091714] via-transparent to-transparent opacity-80 group-hover:opacity-30 transition-opacity"></div>
+          </div>
+          <div class="p-3 md:p-4 flex flex-col flex-grow justify-between bg-white dark:bg-gradient-to-b dark:from-[#091714] dark:to-white/[0.01] pointer-events-none transition-colors">
+            <div>
+              <h3 class="text-xs md:text-sm font-black text-slate-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-1">${photo.title}</h3>
+              <p class="text-slate-600 dark:text-emerald-200/90 text-[9px] md:text-[10px] font-medium leading-relaxed transition-colors">${photo.description}</p>
+            </div>
+          </div>
+        `;
+        fragment.appendChild(item);
+      });
+      container.appendChild(fragment);
+      lucide.createIcons();
+    }
+
+    function renderFolders() {
+      const container = document.getElementById('folders-grid');
+      container.innerHTML = '';
+      
+      if(folders.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-20 bg-white/5 rounded-2xl border border-slate-200 dark:border-emerald-500/10">
+            <i data-lucide="folder" class="w-10 h-10 mx-auto mb-4 text-slate-400 dark:text-slate-600"></i>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">Belum ada folder yang dibuat.</p>
+            <button onclick="openCreateFolderModal()" class="mt-4 text-emerald-600 dark:text-emerald-400 font-bold text-xs uppercase border border-emerald-300 dark:border-emerald-500/30 px-4 py-2 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-400 hover:text-emerald-700 dark:hover:text-slate-950 transition-all">Buat Album Pertama</button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      folders.forEach(folder => {
+        const count = albumPhotos.filter(p => p.folderId === folder.id).length;
+        const item = document.createElement('div');
+        item.className = "group bg-white dark:bg-slate-900/50 rounded-xl md:rounded-2xl p-4 md:p-5 border border-emerald-200/50 dark:border-emerald-500/10 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md dark:shadow-lg flex flex-col items-center text-center animate-in zoom-in-95";
+        item.onclick = () => openAlbumFolder(folder);
+        item.innerHTML = `
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-emerald-50 dark:bg-white/5 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20 transition-all">
+            <i data-lucide="folder" class="text-emerald-500 dark:text-emerald-400 w-7 h-7"></i>
+          </div>
+          <h3 class="text-slate-900 dark:text-white font-black text-sm md:text-base mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-2 w-full leading-tight">${folder.name}</h3>
+          <p class="text-slate-600 dark:text-emerald-200/90 text-[10px] md:text-xs font-bold mt-auto">${count} Foto</p>
+        `;
+        fragment.appendChild(item);
+      });
+      container.appendChild(fragment);
+      lucide.createIcons();
+    }
+
+    function renderFolderPhotos() {
+      const container = document.getElementById('folder-photos-grid');
+      container.innerHTML = '';
+      const currentAlbumPhotos = albumPhotos.filter(p => p.folderId === selectedAlbum.id);
+      
+      if(currentAlbumPhotos.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-20 bg-white/5 rounded-2xl border border-slate-200 dark:border-emerald-500/10">
+            <i data-lucide="image" class="w-10 h-10 mx-auto mb-4 text-slate-400 dark:text-slate-600"></i>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">Folder ini masih kosong.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      currentAlbumPhotos.forEach((photo) => {
+        const item = document.createElement('div');
+        item.className = "group relative bg-white dark:bg-slate-900/50 rounded-xl md:rounded-2xl overflow-hidden border border-emerald-200/50 dark:border-emerald-500/10 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 shadow-sm hover:shadow-lg flex flex-col animate-in fade-in zoom-in-95";
+        item.innerHTML = `
+          <button onclick="confirmDelete('photo', '${photo.id}', false, event)" class="absolute top-2 right-2 z-20 bg-red-500 hover:bg-red-600 text-white p-1.5 rounded-lg opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-md shadow-sm" title="Hapus Foto">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+          <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-200 dark:bg-black cursor-pointer" onclick='openLightbox(${JSON.stringify(photo).replace(/"/g, "&quot;")}, "Album")'>
+            <img src="${photo.url}" alt="${photo.title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-out">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 dark:from-[#091714] via-transparent to-transparent opacity-80 group-hover:opacity-30 transition-opacity"></div>
+          </div>
+          <div class="p-3 md:p-4 flex flex-col flex-grow justify-between bg-white dark:bg-gradient-to-b dark:from-[#091714] dark:to-white/[0.01] pointer-events-none transition-colors">
+            <div>
+              <h3 class="text-xs md:text-sm font-black text-slate-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-1">${photo.title}</h3>
+              <p class="text-slate-600 dark:text-emerald-200/90 text-[9px] md:text-[10px] font-medium leading-relaxed transition-colors">${photo.description}</p>
+            </div>
+          </div>
+        `;
+        fragment.appendChild(item);
+      });
+      container.appendChild(fragment);
+      lucide.createIcons();
+    }
+
+    function openAlbumFolder(folder) {
+      selectedAlbum = folder;
+      document.getElementById('folders-view').classList.add('hidden');
+      document.getElementById('folder-inside-view').classList.remove('hidden');
+      document.getElementById('album-title').innerHTML = `<span class="text-emerald-600 dark:text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 font-extrabold">${folder.name}</span>`;
+      document.getElementById('album-header-label').textContent = 'Isi Album';
+      renderFolderPhotos();
+    }
+
+    function closeAlbumView() {
+      selectedAlbum = null;
+      document.getElementById('folders-view').classList.remove('hidden');
+      document.getElementById('folder-inside-view').classList.add('hidden');
+      document.getElementById('album-title').innerHTML = `<span class="text-emerald-600 dark:text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 font-extrabold">Folder</span> Dokumentasi`;
+      document.getElementById('album-header-label').textContent = 'Koleksi Folder Album';
+    }
+
+    function openCreateFolderModal() { document.getElementById('modal-create-folder').classList.remove('hidden'); }
+    function closeCreateFolderModal() {
+      document.getElementById('modal-create-folder').classList.add('hidden');
+      document.getElementById('folder-name-input').value = ''; document.getElementById('folder-pass-input').value = ''; document.getElementById('folder-error').classList.add('hidden');
+    }
+
+    async function forceDownload(url, filename) {
+      try {
+        if (url.startsWith('data:')) {
+          const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); document.body.removeChild(a); return;
+        }
+        const response = await fetch(url);
+        if(!response.ok) throw new Error("Network error");
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.style.display = 'none'; a.href = blobUrl; a.download = filename; document.body.appendChild(a); a.click(); window.URL.revokeObjectURL(blobUrl); document.body.removeChild(a);
+      } catch (e) {
+        const a = document.createElement('a'); a.style.display = 'none'; a.href = url; a.download = filename; a.target = '_blank'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      }
+    }
+
+    function openUploadModal(imgBase64, target) {
+      tempFileBase64 = imgBase64; uploadTarget = target;
+      document.getElementById('upload-preview-img').src = imgBase64;
+      document.getElementById('modal-upload').classList.remove('hidden');
+    }
+    function closeUploadModal() {
+      document.getElementById('modal-upload').classList.add('hidden');
+      document.getElementById('upload-title').value = ''; document.getElementById('upload-desc').value = ''; document.getElementById('upload-pass').value = ''; document.getElementById('upload-error').classList.add('hidden'); tempFileBase64 = null;
+    }
+
+    function openLightbox(item, contextMenu) {
+      const isArticle = item.id && item.id.toString().startsWith('a');
+      
+      document.getElementById('lightbox-img').src = item.url;
+      document.getElementById('lightbox-title').textContent = item.title;
+      document.getElementById('lightbox-desc').textContent = item.description;
+      
+      const downloadBtn = document.getElementById('lightbox-download-btn');
+      const safeTitle = (item.title || 'Foto_SMPN6').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+      downloadBtn.onclick = () => forceDownload(item.url, safeTitle + '.jpg');
+      
+      const tag = document.getElementById('lightbox-tag');
+      tag.innerHTML = '';
+      
+      if(isArticle) {
+        document.getElementById('lightbox-wrapper').className = "w-full flex flex-col items-center justify-center h-full max-h-[90vh] animate-in zoom-in-95 duration-300 max-w-2xl";
+        document.getElementById('lightbox-media-container').className = "relative w-full flex-grow flex items-center justify-center overflow-hidden mb-4 rounded-xl max-h-[25vh] md:max-h-[30vh]";
+        document.getElementById('lightbox-img').className = "w-full h-full object-cover";
+        document.getElementById('lightbox-content-box').className = "w-full bg-white/95 dark:bg-[#071311]/95 border border-emerald-200 dark:border-emerald-500/20 p-5 md:p-8 rounded-2xl backdrop-blur-2xl text-center flex-shrink-0 shadow-2xl flex flex-col transition-colors max-h-[55vh] md:max-h-[60vh] shadow-emerald-500/10";
+        document.getElementById('lightbox-desc').className = "text-slate-800 dark:text-emerald-50/95 font-bold transition-colors text-xs sm:text-sm md:text-base leading-relaxed";
+        tag.className = "inline-block border text-[9px] md:text-xs font-black px-3 py-1 rounded-full mb-3 uppercase tracking-[0.15em] mx-auto w-max flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-600 text-emerald-800 dark:text-white border-emerald-200 dark:border-emerald-500";
+        tag.innerHTML = `<i data-lucide="${item.icon}" class="w-3 h-3"></i> ${item.category}`;
+      } else {
+        document.getElementById('lightbox-wrapper').className = "w-full flex flex-col items-center justify-center h-full max-h-[90vh] animate-in zoom-in-95 duration-300 max-w-3xl";
+        document.getElementById('lightbox-media-container').className = "relative w-full flex-grow flex items-center justify-center overflow-hidden mb-4 rounded-xl max-h-[45vh] md:max-h-[55vh]";
+        document.getElementById('lightbox-img').className = "w-full h-full object-contain";
+        document.getElementById('lightbox-content-box').className = "w-full bg-white/95 dark:bg-[#071311]/95 border border-emerald-200 dark:border-emerald-500/20 p-5 md:p-8 rounded-2xl backdrop-blur-2xl text-center flex-shrink-0 shadow-2xl flex flex-col transition-colors max-h-[40vh] shadow-emerald-500/5";
+        document.getElementById('lightbox-desc').className = "text-slate-800 dark:text-emerald-50/95 font-bold transition-colors text-[11px] sm:text-xs md:text-sm leading-relaxed text-center";
+        tag.className = "inline-block border text-[9px] md:text-xs font-black px-3 py-1 rounded-full mb-3 uppercase tracking-[0.15em] mx-auto w-max flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/20";
+        if (contextMenu === 'Beranda') { tag.innerHTML = `<i data-lucide="sparkles" class="w-3 h-3"></i> ${item.category}`; } 
+        else { tag.innerHTML = `<i data-lucide="image" class="w-3 h-3"></i> Dokumentasi`; }
+      }
+      document.getElementById('modal-lightbox').classList.remove('hidden');
+      lucide.createIcons();
+    }
+    function closeLightbox() { document.getElementById('modal-lightbox').classList.add('hidden'); }
+
+    function confirmDelete(type, id, isGallery, event) {
+      if(event) event.stopPropagation();
+      itemToDelete = { type, id, isGallery };
+      document.getElementById('delete-title').textContent = type === 'folder' ? 'Hapus Folder Ini?' : 'Hapus Foto Ini?';
+      document.getElementById('delete-desc').textContent = type === 'folder' ? `Apakah Anda yakin ingin menghapus folder beserta seluruh isinya selamanya dari server?` : `Apakah Anda yakin ingin menghapus foto ini secara permanen?`;
+      document.getElementById('modal-delete').classList.remove('hidden');
+    }
+    function confirmDeleteFolder() { if (!selectedAlbum) return; confirmDelete('folder', selectedAlbum.id, false, null); }
+    function closeDeleteModal() { document.getElementById('modal-delete').classList.add('hidden'); itemToDelete = null; }
+
+    async function handleFileUpload(e, target) {
+      const file = e.target.files[0];
+      if (file) {
+        try {
+          const compressed = await compressImage(file, 800, 800, 0.7);
+          openUploadModal(compressed, target);
+        } catch(err) { alert("Gagal memuat file gambar."); }
+      }
+    }
+
+    window.initDatabaseListeners = function() {
+      if(!window.dbRef) return;
+      const db = window.dbRef; const appId = window.appIdVal; const onSnapshotRef = window.onSnapshotRef; const collectionRef = window.collectionRef;
+      
+      onSnapshotRef(collectionRef(db, 'artifacts', appId, 'public', 'data', 'gallery_photos'), (snapshot) => {
+        firebasePhotos = []; snapshot.forEach((doc) => { firebasePhotos.push({ id: doc.id, ...doc.data() }); });
+        firebasePhotos.sort((a, b) => b.createdAt - a.createdAt);
+        if(activeMenu === 'Galeri') renderGallery();
+      }, console.error);
+
+      onSnapshotRef(collectionRef(db, 'artifacts', appId, 'public', 'data', 'album_folders'), (snapshot) => {
+        folders = []; snapshot.forEach((doc) => { folders.push({ id: doc.id, ...doc.data() }); });
+        folders.sort((a, b) => b.createdAt - a.createdAt);
+        if(activeMenu === 'Album') {
+          renderFolders();
+          if (selectedAlbum) {
+            const activeFolderNow = folders.find(f => f.id === selectedAlbum.id);
+            if (!activeFolderNow) closeAlbumView();
+          }
+        }
+      }, console.error);
+
+      onSnapshotRef(collectionRef(db, 'artifacts', appId, 'public', 'data', 'album_photos'), (snapshot) => {
+        albumPhotos = []; snapshot.forEach((doc) => { albumPhotos.push({ id: doc.id, ...doc.data() }); });
+        albumPhotos.sort((a, b) => b.createdAt - a.createdAt);
+        if(activeMenu === 'Album') {
+          if (selectedAlbum) renderFolderPhotos(); else renderFolders();
+        }
+      }, console.error);
+    }
+
+    async function executeSavePhoto(e) {
+      e.preventDefault();
+      const title = document.getElementById('upload-title').value;
+      const desc = document.getElementById('upload-desc').value;
+      const pass = document.getElementById('upload-pass').value;
+      const errorDiv = document.getElementById('upload-error');
+      
+      if(pass !== ADMIN_PASSWORD) { errorDiv.classList.remove('hidden'); document.getElementById('upload-error-text').textContent = "Sandi Keamanan Salah! Proses dibatalkan."; return; }
+      document.getElementById('upload-loading').classList.remove('hidden'); document.getElementById('upload-submit-btn').disabled = true;
+
+      try {
+        const db = window.dbRef; const appId = window.appIdVal;
+        if (uploadTarget === 'gallery') {
+          await window.addDocRef(window.collectionRef(db, 'artifacts', appId, 'public', 'data', 'gallery_photos'), { url: tempFileBase64, title: title, description: desc || 'Momen terbaru SMP Negeri 6 Manokwari', createdAt: Date.now() });
+        } else {
+          await window.addDocRef(window.collectionRef(db, 'artifacts', appId, 'public', 'data', 'album_photos'), { folderId: selectedAlbum.id, url: tempFileBase64, title: title, description: desc || 'Momen dokumentasi album', createdAt: Date.now() });
+        }
+        closeUploadModal();
+      } catch(err) { errorDiv.classList.remove('hidden'); document.getElementById('upload-error-text').textContent = "Gagal mengirim ke database cloud.";
+      } finally { document.getElementById('upload-loading').classList.add('hidden'); document.getElementById('upload-submit-btn').disabled = false; }
+    }
+
+    async function executeCreateFolder(e) {
+      e.preventDefault();
+      const name = document.getElementById('folder-name-input').value;
+      const pass = document.getElementById('folder-pass-input').value;
+      const errorDiv = document.getElementById('folder-error');
+
+      if(pass !== ADMIN_PASSWORD) { errorDiv.classList.remove('hidden'); document.getElementById('folder-error-text').textContent = "Sandi Keamanan Salah!"; return; }
+
+      try {
+        const db = window.dbRef; const appId = window.appIdVal;
+        await window.addDocRef(window.collectionRef(db, 'artifacts', appId, 'public', 'data', 'album_folders'), { name: name, createdAt: Date.now() });
+        closeCreateFolderModal();
+      } catch(err) { errorDiv.classList.remove('hidden'); document.getElementById('folder-error-text').textContent = "Gagal membuat folder di server."; }
+    }
+
+    async function executeDelete() {
+      if(!itemToDelete) return;
+      try {
+        const db = window.dbRef; const appId = window.appIdVal;
+        if (itemToDelete.type === 'photo') {
+          const colName = itemToDelete.isGallery ? 'gallery_photos' : 'album_photos';
+          await window.deleteDocRef(window.docRef(db, 'artifacts', appId, 'public', 'data', colName, itemToDelete.id));
+        } else if (itemToDelete.type === 'folder') {
+          const relationPhotos = albumPhotos.filter(p => p.folderId === itemToDelete.id);
+          for(const p of relationPhotos) { await window.deleteDocRef(window.docRef(db, 'artifacts', appId, 'public', 'data', 'album_photos', p.id)); }
+          await window.deleteDocRef(window.docRef(db, 'artifacts', appId, 'public', 'data', 'album_folders', itemToDelete.id));
+        }
+        closeDeleteModal();
+      } catch(err) { alert("Gagal menghapus data dari server."); }
+    }
+
+    function shuffleArray(array) {
+      let shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
+      return shuffled;
+    }
+
+    window.onload = function() {
+      refreshMading();
+      renderArticles();
+      renderGallery();
+      renderFolders();
+    }
+  </script>
+</body>
+</html>
