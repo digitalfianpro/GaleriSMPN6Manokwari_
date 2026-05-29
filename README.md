@@ -1,0 +1,1 @@
+# GaleriSMPN6Manokwari_
